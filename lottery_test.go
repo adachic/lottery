@@ -140,3 +140,7 @@ func TestLot_0to100(t *testing.T) {
 		}
 	}
 }
+
+func TestGetRandomInt (t *testing.T){
+
+}

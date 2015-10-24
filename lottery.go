@@ -11,7 +11,7 @@ type Lottery struct {
 	rd *rand.Rand
 }
 
-// Interface provide an interface to handle multiple lottery object.
+// Provides an interface to handle multiple lottery object.
 type Interface interface {
 	Prob() int
 }
@@ -48,7 +48,7 @@ func (l Lottery) LotOf(prob int, totalProb int) bool {
 	return l.rd.Intn(totalProb)+1 <= prob
 }
 
-// Lots the result index of One lottery from multiple lottery object to return.
+// Lots the [[result index]] of One lottery from multiple lottery object to return.
 func (l Lottery) Lots(lots ...Interface) int {
 	probSum := 0
 	for _, l := range lots {
@@ -73,3 +73,4 @@ func (l Lottery) Lots(lots ...Interface) int {
 
 	return -1
 }
+
