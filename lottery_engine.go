@@ -2,7 +2,8 @@ package lottery
 import (
 	"math/rand"
 	"time"
-"math"
+_ "math"
+	"fmt"
 )
 
 func createLotteryEngine() Lottery{
@@ -33,7 +34,23 @@ func GetRandomNormInt(start int ,end int) int{
 	}
 	engine := createLotteryEngine()
 	normFloat := engine.rd.NormFloat64()
-	ratio := normFloat / math.MaxFloat64 / 2.0 + 0.5
-	additional := (end - start )* ratio
-	return start + additional
+	fmt.Printf("norm: %f\n", normFloat)
+	if(normFloat > 1.0){
+		normFloat = 1.0
+	}
+	if(normFloat < -1.0){
+		normFloat = -1.0
+	}
+	ratio := normFloat / 2.0 + 0.5
+	fmt.Printf("ratio: %f\n", ratio)
+
+	additional := float64(end - start ) * ratio
+	ret := start + int(additional)
+	if(ret > end){
+		ret = end
+	}
+	if(ret < start){
+		ret = start
+	}
+	return ret
 }
